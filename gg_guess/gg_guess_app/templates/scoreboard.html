@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title%} Scoreboard {% endblock %}
+
+{% block content %}
+
+    <h2>Top 10 Users</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Username</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in top_users %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ user.user.username }}</td>
+                <td>{{ user.points }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'home' %}">Return to Home</a>
+
+{% endblock %}

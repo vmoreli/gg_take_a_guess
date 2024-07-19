@@ -17,7 +17,7 @@
             background-color: #333;
             padding: 10px 20px;
         }
-        .navbar a {
+        .navbar a, .navbar button {
             color: white;
             text-decoration: none;
             padding: 8px 16px;
@@ -42,14 +42,22 @@
 <body>
     <nav class="navbar">
         <div class="logo">
-            <a href="">GG's - Take a Guess!</a>
+            <a href="">Pitaco Geográfico</a>
         </div>
         <div class="menu">
-            <a href="">Home</a>
-            <a href="#">Scoreboard</a>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'scoreboard' %}">Scoreboard</a>
             <a href="#">About</a>
-            <a href="#">Login</a>
-            <a href="#" style="background-color: yellow; color: black; border-radius: 5px;">Signup</a>
+            {% if user.is_authenticated %}
+                <a href="#">My Points</a>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" style="background-color: yellow; color: black; border-radius: 5px;">logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}" style="background-color: yellow; color: black; border-radius: 5px;">Signup</a>
+            {% endif %}
         </div>
     </nav>
 </body>

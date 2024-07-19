@@ -1,5 +1,5 @@
 """
-WSGI config for gg_guess project.
+WSGI config for pitaco project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

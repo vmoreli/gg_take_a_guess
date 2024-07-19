@@ -20,5 +20,6 @@ from gg_guess_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('gg/', include('gg_guess_app.urls')) # importing another urlconf
+    path('gg/', include('gg_guess_app.urls')), # importando outro urlconf
+    path('accounts/', include('django.contrib.auth.urls'))  # url's de autenticação
 ]

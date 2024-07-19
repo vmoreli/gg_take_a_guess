@@ -4,5 +4,62 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <h1 class="text-4xl font-bold">Conteúdo da home page aqui.</h1>
+    <h1 class="text-4xl font-bold"> Pitaco é um jogo onde seu objetivo é advinhar o país! </h1>
+    <p1> Abaixo vão sendo desbloqueadas novas dicas a medida que palpites errados são feitos. </p1>
+    <br>
+    <p1> Mas, cuidado! Quanto mais dicas, menos pontos! </p1>
+
+    {% if user.is_authenticated %}
+        <!-- <p>{{country_info.name}}</p>
+        <p> Esse país está no hemisfério... {{ country_info.hemisphere }}</p>
+        <p> Esse país está no continente... {{ country_info.continent }}</p>
+        <p> Esse país tem {{ country_info.population }} habitantes</p>
+        <p> Esse país tem {{ country_info.area }} km² de área</p>
+        <p> A língua desse país é o {{ country_info.language }} </p>
+        <p> A moeda desse páis é o(a) {{ country_info.currency }}</p>
+        <p> A capital desse país é... {{ country_info.capital }}</p> -->
+
+        {% if guesses >= 0 %}
+            <p> Esse país está no hemisfério... {{ country_info.hemisphere }}</p>
+        {% endif %}
+
+        {% if guesses >= 1%}
+            <p> Esse país está no continente... {{ country_info.continent }}</p>
+        {% endif %}
+
+        {% if guesses >= 2%}
+            <p> Esse país tem {{ country_info.population }} habitantes</p>
+        {% endif %}
+
+        {% if guesses >= 3%}
+            <p> Esse país tem {{ country_info.area }} km² de área</p>
+        {% endif %}
+
+        {% if guesses >= 4%}
+            <p> A língua desse país é o {{ country_info.language }} </p>
+        {% endif %}
+
+        {% if guesses >= 5%}
+            <p> A moeda desse páis é o(a) {{ country_info.currency }}</p>
+        {% endif %}
+
+        {% if guesses >= 6%}
+            <p> A capital desse país é... {{ country_info.capital }}</p>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <label for="country_name">Nome do país:</label>
+            <input type="text" id="country_name" name="country_name">
+            <button type="submit">Enviar</button>
+        </form>
+
+        <p>Você está logado como {{ user.username }}</p>
+
+    {% else %}
+        <p>Você precisa estar logado para jogar o jogo!</p>
+
+    {% endif %}
+   
+    
 {% endblock %}

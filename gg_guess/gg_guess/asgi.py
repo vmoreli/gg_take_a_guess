@@ -1,5 +1,5 @@
 """
-ASGI config for gg_guess project.
+ASGI config for pitaco project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
