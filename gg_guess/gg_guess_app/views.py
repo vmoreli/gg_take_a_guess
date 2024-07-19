@@ -4,6 +4,10 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
+from django.contrib.auth import logout
 import requests
 import random
 
@@ -75,7 +79,20 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
 
+class ChangePasswordView(PasswordChangeView):
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy('home')
+    template_name = 'registration/change_password.html'
 
 def scoreboard(request):
     top_users = UserProfile.objects.order_by('-points')[:10]
     return render(request, 'scoreboard.html', {'top_users': top_users})
+
+@login_required
+def delete_profile(request):
+    if request.method == 'POST':
+        user = request.user
+        user.delete()
+        logout(request)  # Faz logout do usuário após a exclusão do perfil
+        return redirect('home')  # Substitua 'home' pelo nome da URL para a página inicial ou outra página desejada
+    return render(request, 'registration/delete_profile.html')
