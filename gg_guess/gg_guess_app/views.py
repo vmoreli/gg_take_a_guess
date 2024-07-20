@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from .models import UserProfile
+from .models import UserProfile, Country
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
@@ -32,37 +32,50 @@ def home(request):
 
         if user_input.lower() == correct_country_name.lower():
             points = 100 - guesses * 10 if guesses * 10 < 100 else 10
-            request.user.pontos = request.user.pontos + points
-            request.user.save()
+            user_profile = UserProfile.objects.get(user=request.user)
+            user_profile.points += points
+
+            country = Country.objects.get(name=correct_country_name)
+
+            user_profile.countries_guessed.add(country)
+            user_profile.save()
 
             return HttpResponse("Você acertou!")
         else:
             country_info = request.session.get('country_info')
             print(guesses)
             return render(request, "home.html", {'country_info': country_info, 'guesses': guesses})
-            
-    country = get_random_country()
-    if country:
-        country_info = {
-            'name': country.get('name', {}).get('common'),
-            'hemisphere': 'Northern' if country.get('latlng', [])[0] > 0 else 'Southern',
-            'continent': country.get('continents', [])[0] if country.get('continents') else None,
-            'language': list(country.get('languages', {}).values())[0] if country.get('languages') else None,
-            'currency': list(country.get('currencies', {}).keys())[0] if country.get('currencies') else None,
-            'area': country.get('area'),
-            'population': country.get('population'),
-            'capital': country.get('capital')[0]
-        }
 
-        request.session['country_info'] = country_info
-        request.session['correct_country_name'] = country_info['name']
-        guesses = 0
-        request.session['guesses'] = 0
+    if request.user.is_authenticated:
+        country = get_random_country()
 
+        if country:
+            country_info = {
+                'name': country.get('name', {}).get('common'),
+                'hemisphere': 'Northern' if country.get('latlng', [])[0] > 0 else 'Southern',
+                'continent': country.get('continents', [])[0] if country.get('continents') else None,
+                'language': list(country.get('languages', {}).values())[0] if country.get('languages') else None,
+                'currency': list(country.get('currencies', {}).keys())[0] if country.get('currencies') else None,
+                'area': country.get('area'),
+                'population': country.get('population'),
+                'capital': country.get('capital')[0]
+            }
 
-        return render(request, "home.html", {'country_info': country_info, 'guesses': guesses})
-    else:
-        return HttpResponse("Erro ao obter informações do país")
+            request.session['country_info'] = country_info
+            request.session['correct_country_name'] = country_info['name']
+            guesses = 0
+            request.session['guesses'] = 0
+
+            # Certifique-se de que o país esteja na base de dados
+            Country.objects.get_or_create(name=country_info['name'])
+
+            return render(request, "home.html", {'country_info': country_info, 'guesses': guesses})
+
+        else:
+            return HttpResponse("Erro ao obter informações do país")
+
+    return render(request, "home.html")
+    
     
 
 def register(request):
