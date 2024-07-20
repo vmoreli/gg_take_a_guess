@@ -14,16 +14,18 @@ import random
 # Create your views here.
 # views in django - request handlers (actions, in other frameworks)
 
-def get_random_country():
+def get_random_country(excluded_countries):
     url = "https://restcountries.com/v3.1/all"
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
-        return random.choice(data)
+        available_countries = [country for country in data if country['name']['common'] not in excluded_countries]
+        return random.choice(available_countries)
     return None
 
 def home(request):
-    if request.method == 'POST':
+
+    if request.method == 'POST' and request.user.is_authenticated:
         guesses = request.session['guesses'] + 1
         request.session['guesses'] = guesses
         user_input = request.POST.get('country_name', '').strip()
@@ -47,7 +49,10 @@ def home(request):
             return render(request, "home.html", {'country_info': country_info, 'guesses': guesses})
 
     if request.user.is_authenticated:
-        country = get_random_country()
+        user_profile = UserProfile.objects.get(user=request.user)
+        # Obter lista de países que o usuário já acertou
+        guessed_countries = list(user_profile.countries_guessed.values_list('name', flat=True))
+        country = get_random_country(guessed_countries)
 
         if country:
             country_info = {
