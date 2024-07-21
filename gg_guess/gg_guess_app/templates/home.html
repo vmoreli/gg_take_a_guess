@@ -1,65 +1,114 @@
-<!-- templates/home.html -->
 {% extends 'base.html' %}
 
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <h1 class="text-4xl font-bold"> Pitaco é um jogo onde seu objetivo é advinhar o país! </h1>
-    <p1> Abaixo vão sendo desbloqueadas novas dicas a medida que palpites errados são feitos. </p1>
-    <br>
-    <p1> Mas, cuidado! Quanto mais dicas, menos pontos! </p1>
+    <div class="container mt-5">
+        <div class="alert alert-info text-center">
+            <h1 class="display-4 text-primary">Pitaco is a Geographic Guessing Game!</h1>
+            <p class="lead">Unlock new hints with each incorrect guess. Be careful, more hints mean fewer points!</p>
+        </div>
 
-    {% if user.is_authenticated %}
-        <!-- <p>{{country_info.name}}</p>
-        <p> Esse país está no hemisfério... {{ country_info.hemisphere }}</p>
-        <p> Esse país está no continente... {{ country_info.continent }}</p>
-        <p> Esse país tem {{ country_info.population }} habitantes</p>
-        <p> Esse país tem {{ country_info.area }} km² de área</p>
-        <p> A língua desse país é o {{ country_info.language }} </p>
-        <p> A moeda desse páis é o(a) {{ country_info.currency }}</p>
-        <p> A capital desse país é... {{ country_info.capital }}</p> -->
+        <div id="alert-container">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message.message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <a href="" class="mt-3 ml-auto">Play Again</a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        {% if user.is_authenticated %}
+            <div class="row">
+                {% if guesses >= 0 %}
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <p>Hemisphere: <strong>{{ country_info.hemisphere }}</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
 
-        {% if guesses >= 0 %}
-            <p> Esse país está no hemisfério... {{ country_info.hemisphere }}</p>
+                {% if guesses >= 1 %}
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <p>Continent: <strong>{{ country_info.continent }}</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if guesses >= 2 %}
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <p>Sub-region: <strong>{{ country_info.subregion }}</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if guesses >= 3 %}
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <p>Area: <strong>{{ country_info.area }}</strong> km²</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if guesses >= 4 %}
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <p>Language: <strong>{{ country_info.language }}</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if guesses >= 5 %}
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <p>Currency: <strong>{{ country_info.currency }}</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if guesses >= 6 %}
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <p>Capital: <strong>{{ country_info.capital }}</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <form method="POST" class="mb-3">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="country_name" class="form-label">Country name:</label>
+                    <input type="text" id="country_name" name="country_name" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+            <p class="text-muted">You are logged in as <strong>{{ user.username }}</strong> and you currently have <strong>{{ points  }} points.</strong></p>
+
+        {% else %}
+            <div class="alert alert-warning" role="alert">
+                You need to be logged in to play the game!
+            </div>
         {% endif %}
-
-        {% if guesses >= 1%}
-            <p> Esse país está no continente... {{ country_info.continent }}</p>
-        {% endif %}
-
-        {% if guesses >= 2%}
-            <p> Esse país tem {{ country_info.population }} habitantes</p>
-        {% endif %}
-
-        {% if guesses >= 3%}
-            <p> Esse país tem {{ country_info.area }} km² de área</p>
-        {% endif %}
-
-        {% if guesses >= 4%}
-            <p> A língua desse país é o {{ country_info.language }} </p>
-        {% endif %}
-
-        {% if guesses >= 5%}
-            <p> A moeda desse páis é o(a) {{ country_info.currency }}</p>
-        {% endif %}
-
-        {% if guesses >= 6%}
-            <p> A capital desse país é... {{ country_info.capital }}</p>
-        {% endif %}
-
-        <form method="POST">
-            {% csrf_token %}
-            <label for="country_name">Nome do país:</label>
-            <input type="text" id="country_name" name="country_name">
-            <button type="submit">Enviar</button>
-        </form>
-
-        <p>Você está logado como {{ user.username }}</p>
-
-    {% else %}
-        <p>Você precisa estar logado para jogar o jogo!</p>
-
-    {% endif %}
-   
-    
+    </div>
 {% endblock %}
