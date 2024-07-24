@@ -6,12 +6,11 @@ Pitaco é um jogo desenvolvido em Django, no qual o objetivo do usuário é acer
 É necessário estar logado para jogar o jogo! O site contém um leaderboard geral que exibe o top 10 usuários com mais pontos.
 A partir do momento em que um usuário acerta um país no jogo, esse país não aparecerá mais em suas futuras partidas.
 
-Funções de gerenciamento de usuários:
-    - Cadastro, login, logout
-    - Mudança de senha
-    - Exclusão de conta
+Funções de gerenciamento de usuários: Cadastro, login, logout, mudança de senha, exclusão de conta.
 
 As informações dos países são obtidas por meio da API RestCountries.
+
+O jogo deve ser jogado em inglês.
 
 ## Instruções para executar
 
@@ -56,7 +55,9 @@ python manage.py migrate
 
 #### 4. Carregar os dados de exemplo
 
+```bash
 python manage.py loaddata fixtures/db.json
+```
 
 #### 5. Para executar o servidor de desenvolvimento
 
