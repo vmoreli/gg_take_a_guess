@@ -15,11 +15,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
+from django.views.generic.base import RedirectView
 from gg_guess_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('gg/', include('gg_guess_app.urls')), # importando outro urlconf
-    path('accounts/', include('django.contrib.auth.urls'))  # url's de autenticação
+    path('accounts/', include('django.contrib.auth.urls')),  # url's de autenticação
+    re_path(r'^$', RedirectView.as_view(url='/gg/home/', permanent=True))  # Para redirecionar para a tela principal
 ]

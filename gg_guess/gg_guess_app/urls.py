@@ -10,5 +10,5 @@ urlpatterns = [
     path('home/', views.home, name='home'), # URL da página inicial
     path('scoreboard/', views.scoreboard, name='scoreboard'),  # URL para o scoreboard
     path('change-password/', ChangePasswordView.as_view(), name='change_password'),   # URL para trocar senha
-    path('delete-profile/', views.delete_profile, name='delete_profile')  # URL para deletar usuário 
+    path('delete-profile/', views.delete_profile, name='delete_profile')  # URL para deletar usuário
 ]
