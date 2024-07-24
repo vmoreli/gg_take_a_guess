@@ -8,18 +8,6 @@
             <h1 class="display-4 text-primary">Pitaco is a Geographic Guessing Game!</h1>
             <p class="lead">Unlock new hints with each incorrect guess. Be careful, more hints mean fewer points!</p>
         </div>
-
-        <div id="alert-container">
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                        {{ message.message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        <a href="" class="mt-3 ml-auto">Play Again</a>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        </div>
         
         {% if user.is_authenticated %}
             <div class="row">
@@ -94,15 +82,28 @@
                 {% endif %}
             </div>
 
-            <form method="POST" class="mb-3">
-                {% csrf_token %}
-                <div class="mb-3">
-                    <label for="country_name" class="form-label">Country name:</label>
-                    <input type="text" id="country_name" name="country_name" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            <div id="alert-container">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            {{ message.message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <a href="" class="mt-3 ml-auto">Play Again</a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <form method="POST" class="mb-3">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="country_name" class="form-label">Country name:</label>
+                            <input type="text" id="country_name" name="country_name" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                {% endif %}
+            </div>
 
+                
             <p class="text-muted">You are logged in as <strong>{{ user.username }}</strong> and you currently have <strong>{{ points  }} points.</strong></p>
 
         {% else %}
