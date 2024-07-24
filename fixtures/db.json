@@ -1,0 +1,453 @@
+[
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$NkuUCBEFY455kH1GyraQaG$hDmxjYEL7iIDsd5Wyv0lJfqhSmvOe5mgXjWyXJ6U2C4=",
+    "last_login": "2024-07-20T19:43:43.937Z",
+    "is_superuser": false,
+    "username": "teste1",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-07-20T02:34:03.719Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$QRDDeyFapaReo0fxy4OGOU$1wsZMyusfrU/RS8IULCA1H/1RC820TPNfDDQoSNBkIc=",
+    "last_login": "2024-07-20T20:37:59.501Z",
+    "is_superuser": false,
+    "username": "teste2",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-07-20T20:37:58.189Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$1DPodjCY9FIP8gbKJzbu4A$2u0ro9SwFuNdmyiFHf7Buxh09QS5092NenTYQ5lx+74=",
+    "last_login": "2024-07-24T19:29:30.918Z",
+    "is_superuser": false,
+    "username": "teste3",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-07-24T19:01:38.678Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 1,
+  "fields": {
+    "name": "Palau"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 2,
+  "fields": {
+    "name": "Western Sahara"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 3,
+  "fields": {
+    "name": "Benin"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 4,
+  "fields": {
+    "name": "Paraguay"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 5,
+  "fields": {
+    "name": "Falkland Islands"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 6,
+  "fields": {
+    "name": "Nicaragua"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 7,
+  "fields": {
+    "name": "Liechtenstein"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 8,
+  "fields": {
+    "name": "Haiti"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 9,
+  "fields": {
+    "name": "Saint Martin"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 10,
+  "fields": {
+    "name": "Mauritius"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 11,
+  "fields": {
+    "name": "Solomon Islands"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 12,
+  "fields": {
+    "name": "Mexico"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 13,
+  "fields": {
+    "name": "Micronesia"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 14,
+  "fields": {
+    "name": "Oman"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 15,
+  "fields": {
+    "name": "Uzbekistan"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 16,
+  "fields": {
+    "name": "Saint Pierre and Miquelon"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 17,
+  "fields": {
+    "name": "Malawi"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 18,
+  "fields": {
+    "name": "Cuba"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 19,
+  "fields": {
+    "name": "Ecuador"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 20,
+  "fields": {
+    "name": "Turks and Caicos Islands"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 21,
+  "fields": {
+    "name": "Madagascar"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 22,
+  "fields": {
+    "name": "Panama"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 23,
+  "fields": {
+    "name": "Gambia"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 24,
+  "fields": {
+    "name": "Comoros"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 25,
+  "fields": {
+    "name": "Bolivia"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 26,
+  "fields": {
+    "name": "United States Minor Outlying Islands"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 27,
+  "fields": {
+    "name": "Puerto Rico"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 28,
+  "fields": {
+    "name": "South Sudan"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 29,
+  "fields": {
+    "name": "Venezuela"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 30,
+  "fields": {
+    "name": "United States Virgin Islands"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 31,
+  "fields": {
+    "name": "Albania"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 32,
+  "fields": {
+    "name": "Kosovo"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 33,
+  "fields": {
+    "name": "Poland"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 34,
+  "fields": {
+    "name": "Turkmenistan"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 35,
+  "fields": {
+    "name": "Cameroon"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 36,
+  "fields": {
+    "name": "France"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 37,
+  "fields": {
+    "name": "South Korea"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 38,
+  "fields": {
+    "name": "Honduras"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 39,
+  "fields": {
+    "name": "Norway"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 40,
+  "fields": {
+    "name": "Czechia"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 41,
+  "fields": {
+    "name": "Cook Islands"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 42,
+  "fields": {
+    "name": "Suriname"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 43,
+  "fields": {
+    "name": "Tonga"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 44,
+  "fields": {
+    "name": "Nauru"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 45,
+  "fields": {
+    "name": "Greenland"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 46,
+  "fields": {
+    "name": "Estonia"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 47,
+  "fields": {
+    "name": "Syria"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 48,
+  "fields": {
+    "name": "Papua New Guinea"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 49,
+  "fields": {
+    "name": "Egypt"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 50,
+  "fields": {
+    "name": "South Africa"
+  }
+},
+{
+  "model": "gg_guess_app.country",
+  "pk": 51,
+  "fields": {
+    "name": "Northern Mariana Islands"
+  }
+},
+{
+  "model": "gg_guess_app.userprofile",
+  "pk": 2,
+  "fields": {
+    "user": 2,
+    "points": 330,
+    "countries_guessed": [
+      3,
+      4,
+      5,
+      17,
+      19
+    ]
+  }
+},
+{
+  "model": "gg_guess_app.userprofile",
+  "pk": 3,
+  "fields": {
+    "user": 3,
+    "points": 100,
+    "countries_guessed": [
+      23,
+      24
+    ]
+  }
+},
+{
+  "model": "gg_guess_app.userprofile",
+  "pk": 5,
+  "fields": {
+    "user": 5,
+    "points": 210,
+    "countries_guessed": [
+      27,
+      45,
+      49
+    ]
+  }
+}
+]
