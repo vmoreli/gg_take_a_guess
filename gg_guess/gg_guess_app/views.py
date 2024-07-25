@@ -87,14 +87,14 @@ def home(request):
         # Preenche dicionário com as informações do país sorteado
         if country:
             country_info = {
-                'name': country.get('name', {}).get('common'),
-                'hemisphere': 'Northern' if country.get('latlng', [])[0] > 0 else 'Southern',
-                'continent': country.get('continents', [])[0] if country.get('continents') else None,
-                'language': list(country.get('languages', {}).values())[0] if country.get('languages') else None,
-                'currency': list(country.get('currencies', {}).keys())[0] if country.get('currencies') else None,
-                'area': country.get('area'),
-                'subregion': country.get('subregion'),
-                'capital': country.get('capital')[0]
+            'name': country.get('name', {}).get('common') if country.get('name') else None,
+            'hemisphere': 'Northern' if country.get('latlng') and len(country.get('latlng')) > 0 and country.get('latlng')[0] > 0 else 'Southern',
+            'continent': country.get('continents', [None])[0],
+            'language': list(country.get('languages', {}).values())[0] if country.get('languages') else None,
+            'currency': list(country.get('currencies', {}).keys())[0] if country.get('currencies') else None,
+            'area': country.get('area') if country.get('area') is not None else None,
+            'subregion': country.get('subregion') if country.get('subregion') is not None else None,
+            'capital': country.get('capital')[0] if country.get('capital') and len(country.get('capital')) > 0 else None
             }
 
             # Atualiza info na sessão: informações do país sorteado, 
