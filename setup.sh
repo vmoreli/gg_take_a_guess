@@ -37,7 +37,7 @@ echo "O banco de dados foi populado com dados de exemplo. As credenciais de test
 echo "| Nome de usuário | Senha          |"
 echo "| --------------- | -------------- |"
 echo "| teste1          | x%0Y6FM9oM3G   |"
-echo "| teste2          | g5Ai58AR\"9yH   |"
+echo "| teste2          | g5Ai58AR\"9yH  |"
 echo "| teste3          | 2*k7FGtXd#g2   |"
 
 # 5. Iniciar o servidor de desenvolvimento
