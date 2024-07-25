@@ -16,7 +16,13 @@ O jogo deve ser jogado em inglês.
 
 ### Configuração e execução automática:
 
-Execute o script setup.sh. Se a execução for bem sucedida, o servidor estará rodando e poderá ser acessado em http://127.0.0.1:8000/gg/home/.
+Execute o script setup.sh com:
+
+```bash
+./setup.sh
+```
+
+Se a execução for bem sucedida, o servidor estará rodando e poderá ser acessado em http://127.0.0.1:8000/gg/home/.
 
 Isso populará o DB com três usuários de exemplo e que podem ser usados para testes, cujas credenciais são:
 
