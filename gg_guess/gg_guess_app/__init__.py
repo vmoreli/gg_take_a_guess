@@ -1,0 +1,1 @@
+default_app_config = 'gg_guess_app.apps.MyAppConfig'

@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gg_guess_app'
+    'gg_guess_app.apps.GgGuessAppConfig'
 ]
 
 MIDDLEWARE = [

@@ -9,23 +9,23 @@ from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from django.contrib.auth import logout
 from django.contrib import messages
-import requests
 import random
+from gg_guess_app.apps import COUNTRIES
 
 # Create your views here.
 # views in django - request handlers (actions, in other frameworks)
 
 # Função que faz o acesso à API e devolve um país aleatório que não esteja nos países já acertados por um usuário
-def get_random_country(excluded_countries):
-    # excluded countries : lista de países que o usuário já acertou e que, portanto, não devem ser mais selecionados
-    url = "https://restcountries.com/v3.1/all"  # url da API p/ pegar todos os países
-    response = requests.get(url)    
-    if response.status_code == 200: # se o pedido foi bem sucedido
-        data = response.json()
-        # da lista de todos os países, exclui os que estão em excluded_countries
-        available_countries = [country for country in data if country['name']['common'] not in excluded_countries]
-        return random.choice(available_countries)   # retorna país aleatório dentre os disponíveis
-    return None
+# excluded countries : lista de países que o usuário já acertou e que, portanto, não devem ser mais selecionados
+def get_random_country(excluded_countries): 
+    global COUNTRIES
+    if not COUNTRIES:
+        return None
+    # da lista de todos os países, exclui os que estão em excluded_countries
+    available_countries = [country for country in COUNTRIES if country['name'] not in excluded_countries]
+    if not available_countries:
+        return None
+    return random.choice(available_countries)   # retorna país aleatório dentre os disponíveis
 
 # View da home
 def home(request):
@@ -81,20 +81,20 @@ def home(request):
         # Obtem lista de países que o usuário já acertou
         guessed_countries = list(user_profile.countries_guessed.values_list('name', flat=True))
 
-        # Obtem páis aleatório dentre os disponíveis
+        # Obtém país aleatório dentre os disponíveis
         country = get_random_country(guessed_countries)
 
         # Preenche dicionário com as informações do país sorteado
         if country:
             country_info = {
-            'name': country.get('name', {}).get('common') if country.get('name') else None,
-            'hemisphere': 'Northern' if country.get('latlng') and len(country.get('latlng')) > 0 and country.get('latlng')[0] > 0 else 'Southern',
-            'continent': country.get('continents', [None])[0],
-            'language': list(country.get('languages', {}).values())[0] if country.get('languages') else None,
-            'currency': list(country.get('currencies', {}).keys())[0] if country.get('currencies') else None,
-            'area': country.get('area') if country.get('area') is not None else None,
-            'subregion': country.get('subregion') if country.get('subregion') is not None else None,
-            'capital': country.get('capital')[0] if country.get('capital') and len(country.get('capital')) > 0 else None
+                'name': country.get('name'),
+                'hemisphere': country.get('hemisphere'),
+                'continent': country.get('continent'),
+                'language': country.get('language'),
+                'currency': country.get('currency'),
+                'area': country.get('area'),
+                'subregion': country.get('subregion'),
+                'capital': country.get('capital')
             }
 
             # Atualiza info na sessão: informações do país sorteado, 
